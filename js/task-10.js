@@ -20,71 +20,50 @@ function handlerInput(event) {
   return console.log(amount);
 }
 
-/////////////////////////////////////////////
-
 function handlerClick(event) {
-  let htmlDivString = "";
-  switch (event.currentTarget) {
-    case elements.buttonCreate:
-      function createBoxes(num) {
-        let dimension = 20;
-        for (let i = 0; i < num; i += 1) {
-          const colorNumber = getRandomHexColor();
-          console.log(colorNumber);
-          dimension += 10;
-          htmlDivString += `<div style="background-color: ${colorNumber}; width: ${dimension}px; height: ${dimension}px;"></div>`;
-        }
-        return htmlDivString;
-      }
-      createBoxes(amount);
-
-      elements.boxes.innerHTML = htmlDivString;
-      console.log(htmlDivString);
-      console.log(elements.boxes);
-      break;
-    case elements.buttonDestroy:
-      elements.boxes.innerHTML = "";
-      break;
-    default:
+  if (event.currentTarget === elements.buttonCreate) {
+    createBoxes(amount);
+  } else if (event.currentTarget === elements.buttonDestroy) {
+    destroy();
   }
 }
 
-//////////////////////////////////////////////
+function createBoxes(num) {
+  let htmlDivString = "";
+  let dimension = 30;
+  for (let i = 0; i < num; i += 1) {
+    const colorNumber = getRandomHexColor();
+    htmlDivString += `<div style="background-color: ${colorNumber}; width: ${dimension}px; height: ${dimension}px;"></div>`;
+    dimension += 10;
+  }
+  elements.boxes.innerHTML = htmlDivString;
+  console.log(htmlDivString);
+}
 
-// function handlerClick() {
-//   let htmlDivString = [];
-//   const color = getRandomHexColor();
-//   console.log(color);
-//   let divEle = ;
-//   function createBoxes(num) {
-//     for (let i = 0; i < num; i += 1) {
-//       divEle = elements.boxes.document.createElement("div");
-//     }
-//     return;
-//   }
-//   createBoxes(amount);
-// }
+function destroy() {
+  elements.boxes.innerHTML = "";
+}
+/////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////
-
-// let dimension = 20;
-// let color = getRandomHexColor();
 // function handlerClick(event) {
+//   let htmlDivString = "";
 //   switch (event.currentTarget) {
 //     case elements.buttonCreate:
-//       const htmlDivString = "";
-//       createBoxes((num) => {
-//         console.log(num);
-//         for (i = 0; i <= num; i += 1) {
-//           htmlDivString = `${htmlDivString}` + '<div class="box"></div>';
+//       function createBoxes(num) {
+//         let dimension = 20;
+//         for (let i = 0; i < num; i += 1) {
+//           const colorNumber = getRandomHexColor();
+//           console.log(colorNumber);
+//           dimension += 10;
+//           htmlDivString += `<div style="background-color: ${colorNumber}; width: ${dimension}px; height: ${dimension}px;"></div>`;
 //         }
 //         return htmlDivString;
-//       });
+//       }
+//       createBoxes(amount);
+
+//       elements.boxes.innerHTML = htmlDivString;
 //       console.log(htmlDivString);
-//       dimension += 10;
-//       box.style.width = `${dimension}px`;
-//       box.style.height = `${dimension}px`;
-//       box.style.backgroundColor = color;
+//       console.log(elements.boxes);
 //       break;
 //     case elements.buttonDestroy:
 //       elements.boxes.innerHTML = "";
